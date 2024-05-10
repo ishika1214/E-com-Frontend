@@ -4,6 +4,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import {
   Button,
   Collapse,
+  Input,
   Paper,
   Stack,
   Typography,
@@ -14,7 +15,8 @@ import shirt from "../assets/shirt.jpeg";
 import "./myAccount.css";
 import Cart from "./Cart";
 import Wishlist from "./Wishlist";
-import AddIcon from "@mui/icons-material/Add";
+
+import Address from "./Address";
 const MyAccount = () => {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -34,6 +36,9 @@ const MyAccount = () => {
     cart: false,
     address: false,
   });
+
+
+
   return (
     <div className="My-Account">
       <Stack spacing={1}>
@@ -130,13 +135,11 @@ const MyAccount = () => {
               )}
             </div>
             <Typography className="heading">Saved Address</Typography>
-            
           </div>
           <Collapse in={isOpen.address} timeout="auto" unmountOnExit>
-              <div className="add-addressIcon">
-                <AddIcon color="primary"/> Address
-              </div>
-            </Collapse>
+           
+            <Address/>
+          </Collapse>
         </Item>
         <Item className="item">
           <div className="item-headers">
