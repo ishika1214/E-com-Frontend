@@ -1,0 +1,82 @@
+.My-Account {
+  width: 70%;
+  margin: 20px auto;
+}
+.item-headers {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.order-item {
+  display: flex;
+  gap: 15px;
+}
+.order-image {
+  height: 145px;
+  margin: 15px;
+}
+.collapse {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  border-bottom: 1px solid #e3dada;
+}
+.order-details {
+  padding-top: 84px;
+  line-height: 26px;
+  text-align: left;
+}
+.order-price {
+  font-size: large;
+  font-weight: 700;
+  color: #1976d2;
+  margin: 0px;
+}
+.order-type {
+  font-size: large;
+  font-weight: 700;
+  margin: 0px;
+}
+.order-brand {
+  font-size: large;
+  font-weight: 700;
+  margin: 0px;
+}
+.order-status {
+  font-size: large;
+  color: #0d910d;
+  font-weight: 700;
+  padding-right: 18px;
+}
+.add-addressIcon {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  color: #1976d2;
+}
+@media only screen and (max-width: 425px) {
+  .My-Account {
+    width: 95%;
+  }
+  .order-image {
+    height: 73px;
+    margin: 9px;
+  }
+  .order-details {
+    padding-top: 29px;
+    line-height: 18px;
+  }
+  .order-price {
+    font-size: small;
+  }
+  .order-type {
+    font-size: small;
+  }
+  .order-brand {
+    font-size: small;
+  }
+  .order-status {
+    font-size: small;
+  }
+}

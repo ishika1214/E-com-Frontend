@@ -1,0 +1,37 @@
+.signInContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+.default-Image {
+  /* padding-top: 210px; */
+}
+.link {
+  color: #1976d2;
+  font-size: small;
+  text-decoration: underline;
+}
+@media only screen and (max-width: 425px) {
+  .default-Image {
+    height: 99px;
+    position: relative;
+    top: 50;
+    opacity: 0.3;
+    padding-top: 0px;
+  }
+  .second-conatiner {
+    position: absolute;
+    /* top: 3; */
+    /* margin-top: -164px; */
+    margin-bottom: 38px;
+    padding: 0px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .default-Image {
+    padding-top: 66px;
+    width: 50%;
+  }
+}
