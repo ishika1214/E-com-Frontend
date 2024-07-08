@@ -1,6 +1,7 @@
 .profile-container {
   width: 70%;
-  margin: 15px auto;
+  margin: 0px auto;
+  padding-top: 70px;
 }
 .back-button {
   display: flex;
@@ -40,6 +41,8 @@
 @media only screen and (max-width: 425px) {
   .profile-container {
     width: 90%;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .back-button {
     padding: 0px;

@@ -8,12 +8,19 @@ import Typography from "@mui/material/Typography";
 import { cardData } from "../constants/Cards";
 import "./home.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../redux/store";
 import { GetCurrentUser } from "../redux/user/userSlice";
+import { IProductDetails, setCurrentProduct } from "../redux/user/productSlice";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const products = useSelector<RootState, IProductDetails[]>(
+    (state) => state.productSlice.products
+  );
+  console.log(products);
 
   return (
     <div className="first-section">
@@ -23,8 +30,14 @@ const HomePage = () => {
         </Typography>
       </div>
       <div className="Home-CardSection-1">
-        {cardData.map((item) => (
-          <Card className="card-home">
+        {products.map((item) => (
+          <Card
+            className="card-home"
+            onClick={() => {
+              dispatch(setCurrentProduct(item));
+              navigate("/productDetails");
+            }}
+          >
             <CardMedia
               image={item.imageUrl}
               title="green iguana"

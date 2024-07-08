@@ -13,7 +13,37 @@
   height: 290px;
   object-fit: contain;
 }
+.auto-com {
+  /* height: 40px; */
+  /* padding-left: 15px !important; */
+  width: 230px !important;
+}
+.autocomplete-options {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+.MuiAutocomplete-inputRoot {
+  height: 40px;
+  /* margin-top: -9px; */
+}
 
+  .MuiOutlinedInput-root.MuiInputBase-sizeSmall {
+  padding-left: 39px !important;
+  color: white !important;
+}
+.renderInput-i {
+  display: flex;
+  position: fixed;
+  padding-left: 15px;
+  justify-content: space-between;
+  align-items: center;
+  width: 173px !important;
+  height: 40px;
+}
+.first-section{
+  padding-top: 84px;
+}
 /* for mobile */
 @media only screen and (max-width: 425px) {
   .Home-CardSection-1 {
@@ -39,13 +69,20 @@
     margin-bottom: 0px !important;
   }
   .first-section {
-    padding: 1px;
+    padding: 58px 1px 1px 1px;
+    
+
   }
   .card-img {
     height: 125px !important;
   }
   .card-content {
     padding: 2px !important;
+  }
+  .auto-com {
+    /* height: 40px; */
+    /* padding-left: 15px !important; */
+    width: 180px !important;
   }
 }
 

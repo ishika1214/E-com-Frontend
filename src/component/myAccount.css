@@ -1,6 +1,7 @@
 .My-Account {
   width: 70%;
-  margin: 20px auto;
+  margin: 0px auto;
+  padding-top: 85px;
 }
 .item-headers {
   display: flex;
@@ -58,6 +59,7 @@
 @media only screen and (max-width: 425px) {
   .My-Account {
     width: 95%;
+    padding-top: 65px;
   }
   .order-image {
     height: 73px;

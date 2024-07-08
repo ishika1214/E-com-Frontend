@@ -18,6 +18,15 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
+import { Autocomplete, InputAdornment, TextField } from "@mui/material";
+import LaunchIcon from "@mui/icons-material/Launch";
+import "./home.css";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
+import { setProducts } from "../redux/user/productSlice";
+import { textChangeRangeIsUnchanged } from "typescript";
+import ClearIcon from "@mui/icons-material/Clear";
+import { useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -26,6 +35,7 @@ const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
+  // height: "40px",
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
@@ -45,25 +55,17 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
-
 export default function Navbar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const options = ["shirt", "Womens Shirt", "Mens Shirt"];
+  const [value, setValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState("");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [searchText, setSearchText] = React.useState<string>("");
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
+  const [open, setOpen] = useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -110,10 +112,14 @@ export default function Navbar() {
       >
         Profile
       </MenuItem>
-      <MenuItem  onClick={() => {
+      <MenuItem
+        onClick={() => {
           handleMenuClose();
           navigate("/account");
-        }}>My account</MenuItem>
+        }}
+      >
+        My account
+      </MenuItem>
     </Menu>
   );
 
@@ -208,9 +214,19 @@ export default function Navbar() {
       </MenuItem>
     </Menu>
   );
+  const handleOptionClick = (option: any) => {
+    setSearchText(option);
+    setOpen(false); // Close the options dropdown when an option is selected
+  };
+  const handleClearText = () => {
+    setSearchText("");
+  };
+  React.useEffect(() => {
+    dispatch(setProducts(searchText));
+  }, [searchText]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1,position:"fixed", width:"100%" }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -234,11 +250,75 @@ export default function Navbar() {
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
+            {/* <Autocomplete
+              className="auto-com"
+              fullWidth
+              autoHighlight
+              // freeSolo
+         
+              options={options.map((option) => option)}
+              renderOption={(props, option) => (
+                <li
+                  {...props}
+                  className="autocomplete-options"
+                  key={option}
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {option}
+                  <LaunchIcon color="disabled" />
+                </li>
+              )}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  size="small"
+                  // style={{ height: "40px" }}
+                  // value={searchText}
+                  // InputProps={{
+                  //   ...params.InputProps,
+
+                  //   endAdornment: searchText && (
+                  //     <div className="renderInput-i">
+                  //       <>{console.log(params.InputProps)}</>
+                  //       {searchText}
+
+                  //       <IconButton onClick={handleClearText} size="small">
+                  //         <ClearIcon />
+                  //       </IconButton>
+                  //     </div>
+                  //   ),
+                  // }}
+                />
+              )}
+            /> */}
+            <Autocomplete
+              className="auto-com"
+              freeSolo={false}
+              popupIcon={""}
+              value={value}
+              onChange={(event, newValue) => {
+                if (newValue !== null) setValue(newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+                setSearchText(newInputValue);
+              }}
+              // id="controllable-states-demo"
+              options={options.map((option) => option)}
+              renderOption={(props, option) => (
+                <li {...props} className="autocomplete-options" key={option}>
+                  {option}
+                  <LaunchIcon color="disabled" />
+                </li>
+              )}
+              // sx={{ width: 300 }}
+              renderInput={(params) => (
+                <TextField {...params} placeholder="Search..." size="small" />
+              )}
             />
           </Search>
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton

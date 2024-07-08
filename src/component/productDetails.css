@@ -1,6 +1,9 @@
+.produc-container {
+  padding-top: 80px;
+}
 .Product-Details {
   width: 70%;
-  margin: 32px auto;
+  margin: 0px auto;
   border-radius: 4px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
@@ -62,19 +65,21 @@
   align-items: center;
 }
 @media only screen and (max-width: 425px) {
+  .produc-container{
+    padding-top: 65px;
+  }
   .img-container {
     background: white;
   }
   .Product-Details {
     width: 90%;
-    margin: 15px auto;
-    box-shadow:none
+    margin: 0 auto;
+    box-shadow: none;
   }
   .product-img {
     height: 295px;
     max-width: 259px;
     object-fit: contain;
-  
   }
   .button-actions {
     gap: 0px;
